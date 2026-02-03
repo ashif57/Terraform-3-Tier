@@ -1,0 +1,15 @@
+services:
+  api:
+    image: kodekloud/photosharing-app
+    container_name: photosharing-app
+    ports:
+      - "80:8000"
+    env_file:
+      - .env
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
